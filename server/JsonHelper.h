@@ -11,7 +11,7 @@
 #include <QTextStream>
 #include <QFileInfo>
 #include "user.h"
-#include <current_active.h>
+//#include <current_active.h>
 //#include "Question.h"
 //#include "History.h"
 
@@ -176,70 +176,70 @@ void addUser(User user){
     file.close();
 }
 
-void addCurrentActive(QString username, QString host, QString port){
-    QString fileName = ACTIVE_USERS_FILE;
-    QFile file(fileName);
-    if(!file.open(QIODevice::WriteOnly | QIODevice::Append)) {
-        return;
-    }
-    QTextStream out(&file);
+//void addCurrentActive(QString username, QString host, QString port){
+//    QString fileName = ACTIVE_USERS_FILE;
+//    QFile file(fileName);
+//    if(!file.open(QIODevice::WriteOnly | QIODevice::Append)) {
+//        return;
+//    }
+//    QTextStream out(&file);
 
-    out << username << "," << host << "," << port << "\n";
-    file.close();
-}
+//    out << username << "," << host << "," << port << "\n";
+//    file.close();
+//}
 
-QVector<CurrentActive>getAllCurrentActive(){
-    QString fileName = ACTIVE_USERS_FILE;
-    QVector<CurrentActive> result;
-    QFile file(fileName);
+//QVector<CurrentActive>getAllCurrentActive(){
+//    QString fileName = ACTIVE_USERS_FILE;
+//    QVector<CurrentActive> result;
+//    QFile file(fileName);
 
-    if(!file.open(QIODevice::ReadOnly)) {
-        return result;
-    }
+//    if(!file.open(QIODevice::ReadOnly)) {
+//        return result;
+//    }
 
-    QTextStream in(&file);
+//    QTextStream in(&file);
 
-    while(!in.atEnd()) {
-        QString line = in.readLine();
-        if(line.isEmpty()) continue;
-        QStringList fields = line.split(",");
-        if(fields.size() < 3) continue;
-        CurrentActive u;
-        u.username = fields[0];
-        u.host = fields[1];
-        u.port = fields[2];
-        result.push_back(u);
-    }
-    file.close();
-    return result;
-}
+//    while(!in.atEnd()) {
+//        QString line = in.readLine();
+//        if(line.isEmpty()) continue;
+//        QStringList fields = line.split(",");
+//        if(fields.size() < 3) continue;
+//        CurrentActive u;
+//        u.username = fields[0];
+//        u.host = fields[1];
+//        u.port = fields[2];
+//        result.push_back(u);
+//    }
+//    file.close();
+//    return result;
+//}
 
-void removeCurrentActive(const CurrentActive &userToRemove) {
-    QString fileName = ACTIVE_USERS_FILE;
-    QVector<CurrentActive> activeUsers = getAllCurrentActive();
+//void removeCurrentActive(const CurrentActive &userToRemove) {
+//    QString fileName = ACTIVE_USERS_FILE;
+//    QVector<CurrentActive> activeUsers = getAllCurrentActive();
 
-    // Find the index of the userToRemove
-    int indexToRemove = -1;
-    for (int i = 0; i < activeUsers.size(); ++i) {
-        if (activeUsers[i].username == userToRemove.username && activeUsers[i].port == userToRemove.port && activeUsers[i].host == userToRemove.host) {
-            indexToRemove = i;
-            break;
-        }
-    }
+//    // Find the index of the userToRemove
+//    int indexToRemove = -1;
+//    for (int i = 0; i < activeUsers.size(); ++i) {
+//        if (activeUsers[i].username == userToRemove.username && activeUsers[i].port == userToRemove.port && activeUsers[i].host == userToRemove.host) {
+//            indexToRemove = i;
+//            break;
+//        }
+//    }
 
-    if (indexToRemove != -1) {
-        activeUsers.remove(indexToRemove);
-    }
+//    if (indexToRemove != -1) {
+//        activeUsers.remove(indexToRemove);
+//    }
 
-    QFile file(fileName);
-    if (file.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
-        QTextStream out(&file);
-        for (const CurrentActive &user : activeUsers) {
-            out << user.username << "," << user.host << "," << user.port << "\n";
-        }
-        file.close();
-    }
-}
+//    QFile file(fileName);
+//    if (file.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+//        QTextStream out(&file);
+//        for (const CurrentActive &user : activeUsers) {
+//            out << user.username << "," << user.host << "," << user.port << "\n";
+//        }
+//        file.close();
+//    }
+//}
 
 
 void addPrivateChat(QString sender, QString receiver, QString message){

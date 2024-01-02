@@ -2,6 +2,7 @@
 #define CURRENT_ACTIVE_H
 
 #include <QString>
+#include <QHostAddress>
 
 #endif // CURRENT_ACTIVE_H
 
@@ -9,6 +10,6 @@ class CurrentActive
 {
 public:
     QString username;
-    QString host;
-    QString port;
+    QHostAddress host;
+    quint16 port;
 };

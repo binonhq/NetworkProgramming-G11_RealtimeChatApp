@@ -36,6 +36,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    current_active.txt \
     private_chat.txt \
     users.txt

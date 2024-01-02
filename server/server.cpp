@@ -27,6 +27,8 @@ Server::Server(QObject *parent) :
     qDebug()<<"=============================";
     qDebug()<<"        Server Started       ";
     qDebug()<<"=============================";
+
+
 }
 
 void Server::sendResponse(QHostAddress sender, quint16 senderPort, QString responseFlag, QString mainContent, QString subContent){
@@ -63,18 +65,25 @@ void Server::getRequest()
         if (username != "" ) {
             sendResponse(sender, senderPort, RESPONSE_LOG_IN_SUCCESS, username, "");
 
-            addCurrentActive(username, sender.toString() , QString::number(senderPort));
-            QVector<CurrentActive> currentActive = getAllCurrentActive();
-            QString data;
-            for (const CurrentActive &user : currentActive) {
-                data += user.username + ",";
-            }
+            CurrentActive newConnection;
+            newConnection.username = username;
+            newConnection.host = sender;
+            newConnection.port = senderPort;
 
-            if (!data.isEmpty()) {
-                data.chop(1);
-            }
+            connections.push_back(newConnection);
 
-            QTimer::singleShot(5000, [=]() {
+//            addCurrentActive(username, sender.toString() , QString::number(senderPort));
+//            QVector<CurrentActive> currentActive = getAllCurrentActive();
+//            QString data;
+//            for (const CurrentActive &user : currentActive) {
+//                data += user.username + ",";
+//            }
+
+//            if (!data.isEmpty()) {
+//                data.chop(1);
+//            }
+
+            QTimer::singleShot(3000, [=]() {
                 sendAllCurrentActive();
             });
 
@@ -111,19 +120,41 @@ void Server::getRequest()
 //    }
 
     if (flag == REQUEST_LOG_OUT) {
-        CurrentActive u;
-        u.username = mainContent;
-        u.host = sender.toString();
-        u.port = QString::number(senderPort);
-        removeCurrentActive(u);
+//        CurrentActive u;
+//        u.username = mainContent;
+//        u.host = sender;
+//        u.port = senderPort;
+
+        for (auto it = connections.begin(); it != connections.end(); ++it) {
+            if (it->username == mainContent && it->host == sender && it->port == senderPort) {
+                connections.erase(it);
+                break;
+            }
+        }
+
+//        removeCurrentActive(u);
         sendAllCurrentActive();
         return;
     }
+
+//    if (flag == "PRIVATE") {
+//        QString from;
+//        QString to;
+//        QVector<CurrentActive> currentActive = getAllCurrentActive();
+//        for (const CurrentActive &user : currentActive) {
+//            if (user.host == sender.toString() && user.port == QString::number(senderPort)){
+//                from = user.username;
+//            }
+//            if (user.username == mainContent) {
+//                sendResponse("PRIVATE")
+//            }
+//        }
+//        addPrivateChat(from, mainContent, subContent);
+//    }
 }
 
 QString Server::loginHandler(QString username, QString password) {
     QVector<User> listUser = getAllUsers();
-
     foreach (const User& existingUser, listUser) {
         if (existingUser.username == username && existingUser.password == password) {
             return username;
@@ -151,9 +182,10 @@ bool Server::signupHandler(QString username, QString password) {
 }
 
 void Server::sendAllCurrentActive() {
-    QVector<CurrentActive> currentActive = getAllCurrentActive();
+//    QVector<CurrentActive> currentActive = getAllCurrentActive();
     QString data;
-    for (const CurrentActive &user : currentActive) {
+
+    for (const CurrentActive &user : connections) {
         data += user.username + ",";
     }
 
@@ -161,14 +193,13 @@ void Server::sendAllCurrentActive() {
         data.chop(1);
     }
 
-    for (const CurrentActive &user : currentActive) {
+    for (const CurrentActive &user : connections) {
         QString responseFlag = RESPONSE_ACTIVE_USERS;
         QString message = responseFlag + '\0' + data + '\0' + "" + '\0';
 
-        socket->writeDatagram(message.toUtf8(), QHostAddress::LocalHost, user.port.toShort());
+        socket->writeDatagram(message.toUtf8(), user.host, user.port);
+        QString log = "--SEND-- HOST: " + user.host.toString() + ", PORT: " + QString::number(user.port) + ", MSG--FLAG: " + responseFlag + ", MSG--MAINCONTENT: " + data +", MSG--SUBCONTENT: " + "";
 
-
-        QString log = "--SEND-- HOST: " + user.host + ", PORT: " + user.port+ ", MSG--FLAG: " + responseFlag + ", MSG--MAINCONTENT: " + data +", MSG--SUBCONTENT: " + "";
         emit logReceived(log);
     }
 }
