@@ -47,11 +47,21 @@ static constexpr auto qt_meta_stringdata_CLASSClientENDCLASS = QtMocHelpers::str
     "registerFailure",
     "getActiveUsers",
     "data",
+    "getMessages",
+    "from",
+    "messages",
+    "getAllUsersResponse",
+    "userList",
+    "getMyGroups",
+    "groups",
+    "manageGroup",
+    "groupName",
+    "members",
     "getResponse"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSClientENDCLASS_t {
-    uint offsetsAndSizes[20];
+    uint offsetsAndSizes[40];
     char stringdata0[7];
     char stringdata1[13];
     char stringdata2[1];
@@ -62,6 +72,16 @@ struct qt_meta_stringdata_CLASSClientENDCLASS_t {
     char stringdata7[15];
     char stringdata8[5];
     char stringdata9[12];
+    char stringdata10[5];
+    char stringdata11[9];
+    char stringdata12[20];
+    char stringdata13[9];
+    char stringdata14[12];
+    char stringdata15[7];
+    char stringdata16[12];
+    char stringdata17[10];
+    char stringdata18[8];
+    char stringdata19[12];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSClientENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -76,7 +96,17 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSClientENDCLASS_t qt_meta_string
         QT_MOC_LITERAL(57, 15),  // "registerFailure"
         QT_MOC_LITERAL(73, 14),  // "getActiveUsers"
         QT_MOC_LITERAL(88, 4),  // "data"
-        QT_MOC_LITERAL(93, 11)   // "getResponse"
+        QT_MOC_LITERAL(93, 11),  // "getMessages"
+        QT_MOC_LITERAL(105, 4),  // "from"
+        QT_MOC_LITERAL(110, 8),  // "messages"
+        QT_MOC_LITERAL(119, 19),  // "getAllUsersResponse"
+        QT_MOC_LITERAL(139, 8),  // "userList"
+        QT_MOC_LITERAL(148, 11),  // "getMyGroups"
+        QT_MOC_LITERAL(160, 6),  // "groups"
+        QT_MOC_LITERAL(167, 11),  // "manageGroup"
+        QT_MOC_LITERAL(179, 9),  // "groupName"
+        QT_MOC_LITERAL(189, 7),  // "members"
+        QT_MOC_LITERAL(197, 11)   // "getResponse"
     },
     "Client",
     "loginSuccess",
@@ -87,6 +117,16 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSClientENDCLASS_t qt_meta_string
     "registerFailure",
     "getActiveUsers",
     "data",
+    "getMessages",
+    "from",
+    "messages",
+    "getAllUsersResponse",
+    "userList",
+    "getMyGroups",
+    "groups",
+    "manageGroup",
+    "groupName",
+    "members",
     "getResponse"
 };
 #undef QT_MOC_LITERAL
@@ -99,22 +139,26 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSClientENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+      10,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       5,       // signalCount
+       9,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   50,    2, 0x06,    1 /* Public */,
-       4,    0,   53,    2, 0x06,    3 /* Public */,
-       5,    0,   54,    2, 0x06,    4 /* Public */,
-       6,    0,   55,    2, 0x06,    5 /* Public */,
-       7,    1,   56,    2, 0x06,    6 /* Public */,
+       1,    1,   74,    2, 0x06,    1 /* Public */,
+       4,    0,   77,    2, 0x06,    3 /* Public */,
+       5,    0,   78,    2, 0x06,    4 /* Public */,
+       6,    0,   79,    2, 0x06,    5 /* Public */,
+       7,    1,   80,    2, 0x06,    6 /* Public */,
+       9,    2,   83,    2, 0x06,    8 /* Public */,
+      12,    1,   88,    2, 0x06,   11 /* Public */,
+      14,    1,   91,    2, 0x06,   13 /* Public */,
+      16,    2,   94,    2, 0x06,   15 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       9,    0,   59,    2, 0x0a,    8 /* Public */,
+      19,    0,   99,    2, 0x0a,   18 /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString,    3,
@@ -122,6 +166,10 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSClientENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString,    8,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   10,   11,
+    QMetaType::Void, QMetaType::QString,   13,
+    QMetaType::Void, QMetaType::QString,   15,
+    QMetaType::Void, QMetaType::QString, QMetaType::QStringList,   17,   18,
 
  // slots: parameters
     QMetaType::Void,
@@ -150,6 +198,20 @@ Q_CONSTINIT const QMetaObject Client::staticMetaObject = { {
         // method 'getActiveUsers'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        // method 'getMessages'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        // method 'getAllUsersResponse'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        // method 'getMyGroups'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        // method 'manageGroup'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QStringList, std::false_type>,
         // method 'getResponse'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
@@ -167,7 +229,11 @@ void Client::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 2: _t->registerSuccess(); break;
         case 3: _t->registerFailure(); break;
         case 4: _t->getActiveUsers((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 5: _t->getResponse(); break;
+        case 5: _t->getMessages((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 6: _t->getAllUsersResponse((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 7: _t->getMyGroups((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 8: _t->manageGroup((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[2]))); break;
+        case 9: _t->getResponse(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -207,6 +273,34 @@ void Client::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
                 return;
             }
         }
+        {
+            using _t = void (Client::*)(QString , QString );
+            if (_t _q_method = &Client::getMessages; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 5;
+                return;
+            }
+        }
+        {
+            using _t = void (Client::*)(QString );
+            if (_t _q_method = &Client::getAllUsersResponse; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 6;
+                return;
+            }
+        }
+        {
+            using _t = void (Client::*)(QString );
+            if (_t _q_method = &Client::getMyGroups; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 7;
+                return;
+            }
+        }
+        {
+            using _t = void (Client::*)(QString , QStringList );
+            if (_t _q_method = &Client::manageGroup; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 8;
+                return;
+            }
+        }
     }
 }
 
@@ -229,13 +323,13 @@ int Client::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 10)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 10;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 10)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 6;
+        _id -= 10;
     }
     return _id;
 }
@@ -270,5 +364,33 @@ void Client::getActiveUsers(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 4, _a);
+}
+
+// SIGNAL 5
+void Client::getMessages(QString _t1, QString _t2)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    QMetaObject::activate(this, &staticMetaObject, 5, _a);
+}
+
+// SIGNAL 6
+void Client::getAllUsersResponse(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 6, _a);
+}
+
+// SIGNAL 7
+void Client::getMyGroups(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 7, _a);
+}
+
+// SIGNAL 8
+void Client::manageGroup(QString _t1, QStringList _t2)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    QMetaObject::activate(this, &staticMetaObject, 8, _a);
 }
 QT_WARNING_POP

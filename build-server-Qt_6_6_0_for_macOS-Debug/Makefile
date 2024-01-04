@@ -63,7 +63,10 @@ OBJECTS       = main.o \
 		user.o \
 		moc_mainwindow.o \
 		moc_server.o
-DIST          = ../server/current_active.txt \
+DIST          = ../server/friend_requests.txt \
+		../server/group_chat.txt \
+		../server/group_members.txt \
+		../server/list_friends.txt \
 		../server/private_chat.txt \
 		../server/users.txt \
 		../../Qt/6.6.0/macos/mkspecs/features/spec_pre.prf \
@@ -674,6 +677,9 @@ moc_mainwindow.cpp: ../server/mainwindow.h \
 		../server/user.h \
 		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/QString \
 		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/qstring.h \
+		../server/current_active.h \
+		../../Qt/6.6.0/macos/lib/QtNetwork.framework/Headers/QHostAddress \
+		../../Qt/6.6.0/macos/lib/QtNetwork.framework/Headers/qhostaddress.h \
 		../../Qt/6.6.0/macos/libexec/moc
 	/Users/binonhq/Qt/6.6.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=15 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/binonhq/Qt/6.6.0/macos/mkspecs/macx-clang -I/Users/binonhq/NetworkProgramming-G11_RealtimeChatApp/server -I/Users/binonhq/Qt/6.6.0/macos/lib/QtWidgets.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtGui.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtNetwork.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/binonhq/Qt/6.6.0/macos/lib ../server/mainwindow.h -o moc_mainwindow.cpp
 
@@ -685,6 +691,9 @@ moc_server.cpp: ../server/server.h \
 		../server/user.h \
 		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/QString \
 		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/qstring.h \
+		../server/current_active.h \
+		../../Qt/6.6.0/macos/lib/QtNetwork.framework/Headers/QHostAddress \
+		../../Qt/6.6.0/macos/lib/QtNetwork.framework/Headers/qhostaddress.h \
 		../../Qt/6.6.0/macos/libexec/moc
 	/Users/binonhq/Qt/6.6.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=15 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/binonhq/Qt/6.6.0/macos/mkspecs/macx-clang -I/Users/binonhq/NetworkProgramming-G11_RealtimeChatApp/server -I/Users/binonhq/Qt/6.6.0/macos/lib/QtWidgets.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtGui.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtNetwork.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/binonhq/Qt/6.6.0/macos/lib ../server/server.h -o moc_server.cpp
 
@@ -725,7 +734,10 @@ main.o: ../server/main.cpp ../server/mainwindow.h \
 		../../Qt/6.6.0/macos/lib/QtNetwork.framework/Headers/qudpsocket.h \
 		../server/user.h \
 		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/QString \
-		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/qstring.h
+		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/qstring.h \
+		../server/current_active.h \
+		../../Qt/6.6.0/macos/lib/QtNetwork.framework/Headers/QHostAddress \
+		../../Qt/6.6.0/macos/lib/QtNetwork.framework/Headers/qhostaddress.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../server/main.cpp
 
 mainwindow.o: ../server/mainwindow.cpp ../server/mainwindow.h \
@@ -743,6 +755,9 @@ mainwindow.o: ../server/mainwindow.cpp ../server/mainwindow.h \
 		../server/user.h \
 		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/QString \
 		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/qstring.h \
+		../server/current_active.h \
+		../../Qt/6.6.0/macos/lib/QtNetwork.framework/Headers/QHostAddress \
+		../../Qt/6.6.0/macos/lib/QtNetwork.framework/Headers/qhostaddress.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../server/mainwindow.cpp
 
@@ -754,6 +769,9 @@ server.o: ../server/server.cpp ../server/server.h \
 		../server/user.h \
 		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/QString \
 		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/qstring.h \
+		../server/current_active.h \
+		../../Qt/6.6.0/macos/lib/QtNetwork.framework/Headers/QHostAddress \
+		../../Qt/6.6.0/macos/lib/QtNetwork.framework/Headers/qhostaddress.h \
 		../server/JsonHelper.h \
 		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/QJsonDocument \
 		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/qjsondocument.h \
@@ -766,15 +784,18 @@ server.o: ../server/server.cpp ../server/server.h \
 		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/qjsonarray.h \
 		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/QVector \
 		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/qvector.h \
+		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/QDateTime \
+		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/qdatetime.h \
 		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/QFile \
 		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/qfile.h \
 		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/QTextStream \
 		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/qtextstream.h \
 		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/QFileInfo \
 		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/qfileinfo.h \
-		../server/current_active.h \
 		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/QTimer \
-		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/qtimer.h
+		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/qtimer.h \
+		../../Qt/6.6.0/macos/lib/QtNetwork.framework/Headers/QNetworkInterface \
+		../../Qt/6.6.0/macos/lib/QtNetwork.framework/Headers/qnetworkinterface.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o server.o ../server/server.cpp
 
 user.o: ../server/user.cpp ../server/user.h \

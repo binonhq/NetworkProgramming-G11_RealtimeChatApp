@@ -6,14 +6,17 @@ Client::Client(QObject *parent) :
     QObject(parent)
 {
     mySocket = new QUdpSocket(this);
-    serverSocket = new QUdpSocket(this);
-    mySocket->bind(QHostAddress::LocalHost, 5678);
+    mySocket->bind(QHostAddress::AnyIPv4, 5678);
     connect(mySocket,SIGNAL(readyRead()),this,SLOT(getResponse()));
 }
 
 void Client::SendRequest(QString flag, QString mainContent, QString subContent) {
     QString message = flag + '\0' + mainContent + '\0' + subContent + '\0';
-    mySocket->writeDatagram(message.toUtf8(), QHostAddress::LocalHost, 1234);
+
+    QHostAddress ipAddressServer("172.20.10.5");
+    quint16 portServer = 1234;
+
+    mySocket->writeDatagram(message.toUtf8(), ipAddressServer, portServer);
 }
 
 void Client::getResponse()
@@ -75,27 +78,22 @@ void Client::getResponse()
             emit getActiveUsers(response.mainContent);
             return;
         }
+
+        if (response.flag == "PRIVATE" || response.flag == "GROUP_MESSAGE") {
+            emit getMessages(response.mainContent, response.subContent);
+        }
+
+        if (response.flag == "GET_ALL_USERS") {
+            emit getAllUsersResponse(response.mainContent);
+        }
+
+        if (response.flag == "YOUR_GROUP") {
+            emit getMyGroups(response.mainContent);
+        }
+
+        if (response.flag == "MANAGE_GROUP") {
+            emit manageGroup(response.mainContent, response.subContent.split('|'));
+        }
+
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

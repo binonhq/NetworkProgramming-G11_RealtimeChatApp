@@ -24,28 +24,51 @@ public:
     QLabel *label_username;
     QWidget *widget;
     QPushButton *pushButton_chat;
+    QPushButton *pushButton_chat_2;
 
     void setupUi(QFrame *ActiveUserFrame)
     {
         if (ActiveUserFrame->objectName().isEmpty())
             ActiveUserFrame->setObjectName("ActiveUserFrame");
-        ActiveUserFrame->resize(176, 30);
-        ActiveUserFrame->setMaximumSize(QSize(16777215, 30));
+        ActiveUserFrame->resize(290, 30);
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(ActiveUserFrame->sizePolicy().hasHeightForWidth());
+        ActiveUserFrame->setSizePolicy(sizePolicy);
+        ActiveUserFrame->setMinimumSize(QSize(290, 0));
+        ActiveUserFrame->setMaximumSize(QSize(290, 30));
+        ActiveUserFrame->setStyleSheet(QString::fromUtf8(""));
         label_username = new QLabel(ActiveUserFrame);
         label_username->setObjectName("label_username");
-        label_username->setGeometry(QRect(0, 0, 81, 31));
-        label_username->setStyleSheet(QString::fromUtf8("color: #111111;"));
+        label_username->setGeometry(QRect(10, 0, 71, 21));
+        label_username->setStyleSheet(QString::fromUtf8("color: #ffffff"));
         widget = new QWidget(ActiveUserFrame);
         widget->setObjectName("widget");
-        widget->setGeometry(QRect(80, 10, 8, 8));
-        widget->setStyleSheet(QString::fromUtf8("background-color: #FFD801;border-radius:4px"));
+        widget->setGeometry(QRect(0, 0, 8, 8));
+        widget->setStyleSheet(QString::fromUtf8("background-color: rgb(193, 255, 79);\n"
+"border-radius:4px"));
         pushButton_chat = new QPushButton(ActiveUserFrame);
         pushButton_chat->setObjectName("pushButton_chat");
-        pushButton_chat->setGeometry(QRect(110, 0, 61, 32));
+        pushButton_chat->setGeometry(QRect(220, 0, 51, 21));
+        QFont font;
+        font.setPointSize(10);
+        pushButton_chat->setFont(font);
+        pushButton_chat->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_chat->setStyleSheet(QString::fromUtf8("color: #FFFFFF;\n"
+"background-color: #1E90FF"));
+        pushButton_chat_2 = new QPushButton(ActiveUserFrame);
+        pushButton_chat_2->setObjectName("pushButton_chat_2");
+        pushButton_chat_2->setGeometry(QRect(140, 0, 71, 21));
+        pushButton_chat_2->setFont(font);
+        pushButton_chat_2->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_chat_2->setStyleSheet(QString::fromUtf8("color: #FFFFFF;\n"
+"background-color: #1E90FF"));
 
         retranslateUi(ActiveUserFrame);
 
         pushButton_chat->setDefault(true);
+        pushButton_chat_2->setDefault(true);
 
 
         QMetaObject::connectSlotsByName(ActiveUserFrame);
@@ -56,6 +79,7 @@ public:
         ActiveUserFrame->setWindowTitle(QCoreApplication::translate("ActiveUserFrame", "Frame", nullptr));
         label_username->setText(QCoreApplication::translate("ActiveUserFrame", "Username", nullptr));
         pushButton_chat->setText(QCoreApplication::translate("ActiveUserFrame", "Chat", nullptr));
+        pushButton_chat_2->setText(QCoreApplication::translate("ActiveUserFrame", "Addfriend", nullptr));
     } // retranslateUi
 
 };

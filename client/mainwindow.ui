@@ -110,7 +110,13 @@
      </rect>
     </property>
     <property name="inputMethodHints">
-     <set>Qt::ImhHiddenText</set>
+     <set>Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
     </property>
    </widget>
   </widget>
@@ -120,7 +126,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>43</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

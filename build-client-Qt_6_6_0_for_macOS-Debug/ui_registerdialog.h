@@ -43,7 +43,8 @@ public:
         lineEdit_password = new QLineEdit(RegisterDialog);
         lineEdit_password->setObjectName("lineEdit_password");
         lineEdit_password->setGeometry(QRect(317, 231, 291, 21));
-        lineEdit_password->setInputMethodHints(Qt::ImhHiddenText);
+        lineEdit_password->setInputMethodHints(Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData);
+        lineEdit_password->setEchoMode(QLineEdit::Password);
         label_3 = new QLabel(RegisterDialog);
         label_3->setObjectName("label_3");
         label_3->setGeometry(QRect(200, 231, 58, 16));
@@ -79,10 +80,15 @@ public:
         lineEdit_cfPassword = new QLineEdit(RegisterDialog);
         lineEdit_cfPassword->setObjectName("lineEdit_cfPassword");
         lineEdit_cfPassword->setGeometry(QRect(317, 262, 291, 21));
-        lineEdit_cfPassword->setInputMethodHints(Qt::ImhHiddenText);
+        lineEdit_cfPassword->setInputMethodHints(Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData);
+        lineEdit_cfPassword->setEchoMode(QLineEdit::Password);
         label_4 = new QLabel(RegisterDialog);
         label_4->setObjectName("label_4");
         label_4->setGeometry(QRect(200, 262, 109, 16));
+        QWidget::setTabOrder(lineEdit_username, lineEdit_password);
+        QWidget::setTabOrder(lineEdit_password, lineEdit_cfPassword);
+        QWidget::setTabOrder(lineEdit_cfPassword, pushButton_register);
+        QWidget::setTabOrder(pushButton_register, pushButton_login);
 
         retranslateUi(RegisterDialog);
 

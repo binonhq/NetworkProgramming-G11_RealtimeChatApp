@@ -14,26 +14,32 @@ TEMPLATE = app
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    activeuserframe.cpp \
     chatclient.cpp \
     client.cpp \
+    creategroupdialog.cpp \
+    groupchatframe.cpp \
     main.cpp \
     mainwindow.cpp \
-    registerdialog.cpp
+    registerdialog.cpp \
+    userframe.cpp
 
 HEADERS += \
     Response.h \
-    activeuserframe.h \
     chatclient.h \
     client.h \
+    creategroupdialog.h \
+    groupchatframe.h \
     mainwindow.h \
-    registerdialog.h
+    registerdialog.h \
+    userframe.h
 
 FORMS += \
-    activeuserframe.ui \
     chatclient.ui \
+    creategroupdialog.ui \
+    groupchatframe.ui \
     mainwindow.ui \
-    registerdialog.ui
+    registerdialog.ui \
+    userframe.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -80,11 +80,12 @@ public:
         lineEdit_password = new QLineEdit(centralwidget);
         lineEdit_password->setObjectName("lineEdit_password");
         lineEdit_password->setGeometry(QRect(279, 220, 321, 21));
-        lineEdit_password->setInputMethodHints(Qt::ImhHiddenText);
+        lineEdit_password->setInputMethodHints(Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData);
+        lineEdit_password->setEchoMode(QLineEdit::Password);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 800, 43));
+        menubar->setGeometry(QRect(0, 0, 800, 22));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -106,6 +107,7 @@ public:
         label->setText(QCoreApplication::translate("MainWindow", "LOGIN", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "Password", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "Username", nullptr));
+        lineEdit_password->setText(QString());
     } // retranslateUi
 
 };

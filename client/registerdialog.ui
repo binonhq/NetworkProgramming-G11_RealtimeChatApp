@@ -23,7 +23,10 @@
     </rect>
    </property>
    <property name="inputMethodHints">
-    <set>Qt::ImhHiddenText</set>
+    <set>Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
@@ -122,7 +125,10 @@
     </rect>
    </property>
    <property name="inputMethodHints">
-    <set>Qt::ImhHiddenText</set>
+    <set>Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
@@ -139,6 +145,13 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>lineEdit_username</tabstop>
+  <tabstop>lineEdit_password</tabstop>
+  <tabstop>lineEdit_cfPassword</tabstop>
+  <tabstop>pushButton_register</tabstop>
+  <tabstop>pushButton_login</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

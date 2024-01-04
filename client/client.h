@@ -18,12 +18,16 @@ signals:
     void registerSuccess();
     void registerFailure();
     void getActiveUsers(QString data);
+    void getMessages(QString from, QString messages);
+    void getAllUsersResponse(QString userList);
+    void getMyGroups(QString groups);
+    void manageGroup(QString groupName, QStringList members);
 
 public slots:
     void getResponse();
+
 private:
     QUdpSocket *mySocket;
-    QUdpSocket *serverSocket;
 };
 
 #endif // CLIENT_H

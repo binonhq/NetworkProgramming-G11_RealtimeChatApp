@@ -42,16 +42,18 @@ static constexpr auto qt_meta_stringdata_CLASSActiveUserFrameENDCLASS = QtMocHel
     "userClicked",
     "",
     "username",
+    "type",
     "on_pushButton_chat_clicked"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSActiveUserFrameENDCLASS_t {
-    uint offsetsAndSizes[10];
+    uint offsetsAndSizes[12];
     char stringdata0[16];
     char stringdata1[12];
     char stringdata2[1];
     char stringdata3[9];
-    char stringdata4[27];
+    char stringdata4[5];
+    char stringdata5[27];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSActiveUserFrameENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -61,12 +63,14 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSActiveUserFrameENDCLASS_t qt_me
         QT_MOC_LITERAL(16, 11),  // "userClicked"
         QT_MOC_LITERAL(28, 0),  // ""
         QT_MOC_LITERAL(29, 8),  // "username"
-        QT_MOC_LITERAL(38, 26)   // "on_pushButton_chat_clicked"
+        QT_MOC_LITERAL(38, 4),  // "type"
+        QT_MOC_LITERAL(43, 26)   // "on_pushButton_chat_clicked"
     },
     "ActiveUserFrame",
     "userClicked",
     "",
     "username",
+    "type",
     "on_pushButton_chat_clicked"
 };
 #undef QT_MOC_LITERAL
@@ -87,13 +91,13 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSActiveUserFrameENDCLASS[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   26,    2, 0x06,    1 /* Public */,
+       1,    2,   26,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       4,    0,   29,    2, 0x08,    3 /* Private */,
+       5,    0,   31,    2, 0x08,    4 /* Private */,
 
  // signals: parameters
-    QMetaType::Void, QMetaType::QString,    3,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,    3,    4,
 
  // slots: parameters
     QMetaType::Void,
@@ -113,6 +117,7 @@ Q_CONSTINIT const QMetaObject ActiveUserFrame::staticMetaObject = { {
         // method 'userClicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'on_pushButton_chat_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
@@ -125,14 +130,14 @@ void ActiveUserFrame::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         auto *_t = static_cast<ActiveUserFrame *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->userClicked((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 0: _t->userClicked((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
         case 1: _t->on_pushButton_chat_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (ActiveUserFrame::*)(const QString & );
+            using _t = void (ActiveUserFrame::*)(const QString & , QString );
             if (_t _q_method = &ActiveUserFrame::userClicked; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 0;
                 return;
@@ -172,9 +177,9 @@ int ActiveUserFrame::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void ActiveUserFrame::userClicked(const QString & _t1)
+void ActiveUserFrame::userClicked(const QString & _t1, QString _t2)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_WARNING_POP

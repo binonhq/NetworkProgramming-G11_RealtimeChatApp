@@ -52,27 +52,35 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../client/activeuserframe.cpp \
-		../client/chatclient.cpp \
+SOURCES       = ../client/chatclient.cpp \
 		../client/client.cpp \
+		../client/creategroupdialog.cpp \
+		../client/groupchatframe.cpp \
 		../client/main.cpp \
 		../client/mainwindow.cpp \
-		../client/registerdialog.cpp moc_activeuserframe.cpp \
-		moc_chatclient.cpp \
+		../client/registerdialog.cpp \
+		../client/userframe.cpp moc_chatclient.cpp \
 		moc_client.cpp \
+		moc_creategroupdialog.cpp \
+		moc_groupchatframe.cpp \
 		moc_mainwindow.cpp \
-		moc_registerdialog.cpp
-OBJECTS       = activeuserframe.o \
-		chatclient.o \
+		moc_registerdialog.cpp \
+		moc_userframe.cpp
+OBJECTS       = chatclient.o \
 		client.o \
+		creategroupdialog.o \
+		groupchatframe.o \
 		main.o \
 		mainwindow.o \
 		registerdialog.o \
-		moc_activeuserframe.o \
+		userframe.o \
 		moc_chatclient.o \
 		moc_client.o \
+		moc_creategroupdialog.o \
+		moc_groupchatframe.o \
 		moc_mainwindow.o \
-		moc_registerdialog.o
+		moc_registerdialog.o \
+		moc_userframe.o
 DIST          = ../../Qt/6.6.0/macos/mkspecs/features/spec_pre.prf \
 		../../Qt/6.6.0/macos/mkspecs/features/device_config.prf \
 		../../Qt/6.6.0/macos/mkspecs/common/unix.conf \
@@ -238,16 +246,20 @@ DIST          = ../../Qt/6.6.0/macos/mkspecs/features/spec_pre.prf \
 		../../Qt/6.6.0/macos/mkspecs/features/yacc.prf \
 		../../Qt/6.6.0/macos/mkspecs/features/lex.prf \
 		../client/client.pro ../client/Response.h \
-		../client/activeuserframe.h \
 		../client/chatclient.h \
 		../client/client.h \
+		../client/creategroupdialog.h \
+		../client/groupchatframe.h \
 		../client/mainwindow.h \
-		../client/registerdialog.h ../client/activeuserframe.cpp \
-		../client/chatclient.cpp \
+		../client/registerdialog.h \
+		../client/userframe.h ../client/chatclient.cpp \
 		../client/client.cpp \
+		../client/creategroupdialog.cpp \
+		../client/groupchatframe.cpp \
 		../client/main.cpp \
 		../client/mainwindow.cpp \
-		../client/registerdialog.cpp
+		../client/registerdialog.cpp \
+		../client/userframe.cpp
 QMAKE_TARGET  = QUdpSocket
 DESTDIR       = 
 TARGET        = QUdpSocket.app/Contents/MacOS/QUdpSocket
@@ -268,7 +280,7 @@ include /Users/binonhq/Qt/6.6.0/macos/mkspecs/features/mac/sdk.mk
 first: all
 ####### Build rules
 
-QUdpSocket.app/Contents/MacOS/QUdpSocket: ui_activeuserframe.h ui_chatclient.h ui_mainwindow.h ui_registerdialog.h $(OBJECTS)  
+QUdpSocket.app/Contents/MacOS/QUdpSocket: ui_chatclient.h ui_creategroupdialog.h ui_groupchatframe.h ui_mainwindow.h ui_registerdialog.h ui_userframe.h $(OBJECTS)  
 	@test -d QUdpSocket.app/Contents/MacOS/ || mkdir -p QUdpSocket.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET)  $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -635,9 +647,9 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../client/Response.h ../client/activeuserframe.h ../client/chatclient.h ../client/client.h ../client/mainwindow.h ../client/registerdialog.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../client/activeuserframe.cpp ../client/chatclient.cpp ../client/client.cpp ../client/main.cpp ../client/mainwindow.cpp ../client/registerdialog.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../client/activeuserframe.ui ../client/chatclient.ui ../client/mainwindow.ui ../client/registerdialog.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../client/Response.h ../client/chatclient.h ../client/client.h ../client/creategroupdialog.h ../client/groupchatframe.h ../client/mainwindow.h ../client/registerdialog.h ../client/userframe.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../client/chatclient.cpp ../client/client.cpp ../client/creategroupdialog.cpp ../client/groupchatframe.cpp ../client/main.cpp ../client/mainwindow.cpp ../client/registerdialog.cpp ../client/userframe.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../client/chatclient.ui ../client/creategroupdialog.ui ../client/groupchatframe.ui ../client/mainwindow.ui ../client/registerdialog.ui ../client/userframe.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -666,21 +678,19 @@ benchmark: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_activeuserframe.cpp moc_chatclient.cpp moc_client.cpp moc_mainwindow.cpp moc_registerdialog.cpp
+compiler_moc_header_make_all: moc_chatclient.cpp moc_client.cpp moc_creategroupdialog.cpp moc_groupchatframe.cpp moc_mainwindow.cpp moc_registerdialog.cpp moc_userframe.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_activeuserframe.cpp moc_chatclient.cpp moc_client.cpp moc_mainwindow.cpp moc_registerdialog.cpp
-moc_activeuserframe.cpp: ../client/activeuserframe.h \
-		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QFrame \
-		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qframe.h \
-		../../Qt/6.6.0/macos/libexec/moc
-	/Users/binonhq/Qt/6.6.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=15 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/binonhq/Qt/6.6.0/macos/mkspecs/macx-clang -I/Users/binonhq/NetworkProgramming-G11_RealtimeChatApp/client -I/Users/binonhq/Qt/6.6.0/macos/lib/QtWidgets.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtGui.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtNetwork.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/binonhq/Qt/6.6.0/macos/lib ../client/activeuserframe.h -o moc_activeuserframe.cpp
-
+	-$(DEL_FILE) moc_chatclient.cpp moc_client.cpp moc_creategroupdialog.cpp moc_groupchatframe.cpp moc_mainwindow.cpp moc_registerdialog.cpp moc_userframe.cpp
 moc_chatclient.cpp: ../client/chatclient.h \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qdialog.h \
-		../client/activeuserframe.h \
+		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../client/userframe.h \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QFrame \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qframe.h \
+		../client/creategroupdialog.h \
+		../client/groupchatframe.h \
 		../../Qt/6.6.0/macos/libexec/moc
 	/Users/binonhq/Qt/6.6.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=15 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/binonhq/Qt/6.6.0/macos/mkspecs/macx-clang -I/Users/binonhq/NetworkProgramming-G11_RealtimeChatApp/client -I/Users/binonhq/Qt/6.6.0/macos/lib/QtWidgets.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtGui.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtNetwork.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/binonhq/Qt/6.6.0/macos/lib ../client/chatclient.h -o moc_chatclient.cpp
 
@@ -689,20 +699,22 @@ moc_client.cpp: ../client/client.h \
 		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/qobject.h \
 		../../Qt/6.6.0/macos/lib/QtNetwork.framework/Headers/QUdpSocket \
 		../../Qt/6.6.0/macos/lib/QtNetwork.framework/Headers/qudpsocket.h \
-		../client/mainwindow.h \
-		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QMainWindow \
-		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		../client/registerdialog.h \
+		../../Qt/6.6.0/macos/libexec/moc
+	/Users/binonhq/Qt/6.6.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=15 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/binonhq/Qt/6.6.0/macos/mkspecs/macx-clang -I/Users/binonhq/NetworkProgramming-G11_RealtimeChatApp/client -I/Users/binonhq/Qt/6.6.0/macos/lib/QtWidgets.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtGui.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtNetwork.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/binonhq/Qt/6.6.0/macos/lib ../client/client.h -o moc_client.cpp
+
+moc_creategroupdialog.cpp: ../client/creategroupdialog.h \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qdialog.h \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QMessageBox \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qmessagebox.h \
-		../client/chatclient.h \
-		../client/activeuserframe.h \
+		../../Qt/6.6.0/macos/libexec/moc
+	/Users/binonhq/Qt/6.6.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=15 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/binonhq/Qt/6.6.0/macos/mkspecs/macx-clang -I/Users/binonhq/NetworkProgramming-G11_RealtimeChatApp/client -I/Users/binonhq/Qt/6.6.0/macos/lib/QtWidgets.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtGui.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtNetwork.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/binonhq/Qt/6.6.0/macos/lib ../client/creategroupdialog.h -o moc_creategroupdialog.cpp
+
+moc_groupchatframe.cpp: ../client/groupchatframe.h \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QFrame \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qframe.h \
 		../../Qt/6.6.0/macos/libexec/moc
-	/Users/binonhq/Qt/6.6.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=15 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/binonhq/Qt/6.6.0/macos/mkspecs/macx-clang -I/Users/binonhq/NetworkProgramming-G11_RealtimeChatApp/client -I/Users/binonhq/Qt/6.6.0/macos/lib/QtWidgets.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtGui.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtNetwork.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/binonhq/Qt/6.6.0/macos/lib ../client/client.h -o moc_client.cpp
+	/Users/binonhq/Qt/6.6.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=15 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/binonhq/Qt/6.6.0/macos/mkspecs/macx-clang -I/Users/binonhq/NetworkProgramming-G11_RealtimeChatApp/client -I/Users/binonhq/Qt/6.6.0/macos/lib/QtWidgets.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtGui.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtNetwork.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/binonhq/Qt/6.6.0/macos/lib ../client/groupchatframe.h -o moc_groupchatframe.cpp
 
 moc_mainwindow.cpp: ../client/mainwindow.h \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QMainWindow \
@@ -713,9 +725,16 @@ moc_mainwindow.cpp: ../client/mainwindow.h \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QMessageBox \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		../client/chatclient.h \
-		../client/activeuserframe.h \
+		../client/userframe.h \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QFrame \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qframe.h \
+		../client/creategroupdialog.h \
+		../client/groupchatframe.h \
+		../client/client.h \
+		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/QObject \
+		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/qobject.h \
+		../../Qt/6.6.0/macos/lib/QtNetwork.framework/Headers/QUdpSocket \
+		../../Qt/6.6.0/macos/lib/QtNetwork.framework/Headers/qudpsocket.h \
 		../../Qt/6.6.0/macos/libexec/moc
 	/Users/binonhq/Qt/6.6.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=15 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/binonhq/Qt/6.6.0/macos/mkspecs/macx-clang -I/Users/binonhq/NetworkProgramming-G11_RealtimeChatApp/client -I/Users/binonhq/Qt/6.6.0/macos/lib/QtWidgets.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtGui.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtNetwork.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/binonhq/Qt/6.6.0/macos/lib ../client/mainwindow.h -o moc_mainwindow.cpp
 
@@ -727,20 +746,30 @@ moc_registerdialog.cpp: ../client/registerdialog.h \
 		../../Qt/6.6.0/macos/libexec/moc
 	/Users/binonhq/Qt/6.6.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=15 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/binonhq/Qt/6.6.0/macos/mkspecs/macx-clang -I/Users/binonhq/NetworkProgramming-G11_RealtimeChatApp/client -I/Users/binonhq/Qt/6.6.0/macos/lib/QtWidgets.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtGui.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtNetwork.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/binonhq/Qt/6.6.0/macos/lib ../client/registerdialog.h -o moc_registerdialog.cpp
 
+moc_userframe.cpp: ../client/userframe.h \
+		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QFrame \
+		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qframe.h \
+		../../Qt/6.6.0/macos/libexec/moc
+	/Users/binonhq/Qt/6.6.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=15 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/binonhq/Qt/6.6.0/macos/mkspecs/macx-clang -I/Users/binonhq/NetworkProgramming-G11_RealtimeChatApp/client -I/Users/binonhq/Qt/6.6.0/macos/lib/QtWidgets.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtGui.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtNetwork.framework/Headers -I/Users/binonhq/Qt/6.6.0/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/binonhq/Qt/6.6.0/macos/lib ../client/userframe.h -o moc_userframe.cpp
+
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_activeuserframe.h ui_chatclient.h ui_mainwindow.h ui_registerdialog.h
+compiler_uic_make_all: ui_chatclient.h ui_creategroupdialog.h ui_groupchatframe.h ui_mainwindow.h ui_registerdialog.h ui_userframe.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_activeuserframe.h ui_chatclient.h ui_mainwindow.h ui_registerdialog.h
-ui_activeuserframe.h: ../client/activeuserframe.ui \
-		../../Qt/6.6.0/macos/libexec/uic
-	/Users/binonhq/Qt/6.6.0/macos/libexec/uic ../client/activeuserframe.ui -o ui_activeuserframe.h
-
+	-$(DEL_FILE) ui_chatclient.h ui_creategroupdialog.h ui_groupchatframe.h ui_mainwindow.h ui_registerdialog.h ui_userframe.h
 ui_chatclient.h: ../client/chatclient.ui \
 		../../Qt/6.6.0/macos/libexec/uic
 	/Users/binonhq/Qt/6.6.0/macos/libexec/uic ../client/chatclient.ui -o ui_chatclient.h
+
+ui_creategroupdialog.h: ../client/creategroupdialog.ui \
+		../../Qt/6.6.0/macos/libexec/uic
+	/Users/binonhq/Qt/6.6.0/macos/libexec/uic ../client/creategroupdialog.ui -o ui_creategroupdialog.h
+
+ui_groupchatframe.h: ../client/groupchatframe.ui \
+		../../Qt/6.6.0/macos/libexec/uic
+	/Users/binonhq/Qt/6.6.0/macos/libexec/uic ../client/groupchatframe.ui -o ui_groupchatframe.h
 
 ui_mainwindow.h: ../client/mainwindow.ui \
 		../../Qt/6.6.0/macos/libexec/uic
@@ -749,6 +778,10 @@ ui_mainwindow.h: ../client/mainwindow.ui \
 ui_registerdialog.h: ../client/registerdialog.ui \
 		../../Qt/6.6.0/macos/libexec/uic
 	/Users/binonhq/Qt/6.6.0/macos/libexec/uic ../client/registerdialog.ui -o ui_registerdialog.h
+
+ui_userframe.h: ../client/userframe.ui \
+		../../Qt/6.6.0/macos/libexec/uic
+	/Users/binonhq/Qt/6.6.0/macos/libexec/uic ../client/userframe.ui -o ui_userframe.h
 
 compiler_rez_source_make_all:
 compiler_rez_source_clean:
@@ -762,30 +795,17 @@ compiler_clean: compiler_moc_header_clean compiler_uic_clean
 
 ####### Compile
 
-activeuserframe.o: ../client/activeuserframe.cpp ../client/activeuserframe.h \
-		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QFrame \
-		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qframe.h \
-		ui_activeuserframe.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o activeuserframe.o ../client/activeuserframe.cpp
-
 chatclient.o: ../client/chatclient.cpp ../client/chatclient.h \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qdialog.h \
-		../client/activeuserframe.h \
+		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../client/userframe.h \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QFrame \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qframe.h \
-		ui_chatclient.h \
-		../client/client.h \
-		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/QObject \
-		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/qobject.h \
-		../../Qt/6.6.0/macos/lib/QtNetwork.framework/Headers/QUdpSocket \
-		../../Qt/6.6.0/macos/lib/QtNetwork.framework/Headers/qudpsocket.h \
-		../client/mainwindow.h \
-		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QMainWindow \
-		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		../client/registerdialog.h \
-		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QMessageBox \
-		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qmessagebox.h
+		../client/creategroupdialog.h \
+		../client/groupchatframe.h \
+		ui_chatclient.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o chatclient.o ../client/chatclient.cpp
 
 client.o: ../client/client.cpp ../client/client.h \
@@ -793,6 +813,9 @@ client.o: ../client/client.cpp ../client/client.h \
 		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/qobject.h \
 		../../Qt/6.6.0/macos/lib/QtNetwork.framework/Headers/QUdpSocket \
 		../../Qt/6.6.0/macos/lib/QtNetwork.framework/Headers/qudpsocket.h \
+		../client/Response.h \
+		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/QString \
+		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/qstring.h \
 		../client/mainwindow.h \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
@@ -802,13 +825,26 @@ client.o: ../client/client.cpp ../client/client.h \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QMessageBox \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		../client/chatclient.h \
-		../client/activeuserframe.h \
+		../client/userframe.h \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QFrame \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qframe.h \
-		../client/Response.h \
-		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/QString \
-		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/qstring.h
+		../client/creategroupdialog.h \
+		../client/groupchatframe.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o client.o ../client/client.cpp
+
+creategroupdialog.o: ../client/creategroupdialog.cpp ../client/creategroupdialog.h \
+		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QDialog \
+		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		ui_creategroupdialog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o creategroupdialog.o ../client/creategroupdialog.cpp
+
+groupchatframe.o: ../client/groupchatframe.cpp ../client/groupchatframe.h \
+		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QFrame \
+		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qframe.h \
+		ui_groupchatframe.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o groupchatframe.o ../client/groupchatframe.cpp
 
 main.o: ../client/main.cpp ../client/mainwindow.h \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QMainWindow \
@@ -819,9 +855,11 @@ main.o: ../client/main.cpp ../client/mainwindow.h \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QMessageBox \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		../client/chatclient.h \
-		../client/activeuserframe.h \
+		../client/userframe.h \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QFrame \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qframe.h \
+		../client/creategroupdialog.h \
+		../client/groupchatframe.h \
 		../client/client.h \
 		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/QObject \
 		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/qobject.h \
@@ -840,15 +878,17 @@ mainwindow.o: ../client/mainwindow.cpp ../client/mainwindow.h \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QMessageBox \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		../client/chatclient.h \
-		../client/activeuserframe.h \
+		../client/userframe.h \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QFrame \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qframe.h \
-		ui_mainwindow.h \
+		../client/creategroupdialog.h \
+		../client/groupchatframe.h \
 		../client/client.h \
 		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/QObject \
 		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/qobject.h \
 		../../Qt/6.6.0/macos/lib/QtNetwork.framework/Headers/QUdpSocket \
-		../../Qt/6.6.0/macos/lib/QtNetwork.framework/Headers/qudpsocket.h
+		../../Qt/6.6.0/macos/lib/QtNetwork.framework/Headers/qudpsocket.h \
+		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../client/mainwindow.cpp
 
 registerdialog.o: ../client/registerdialog.cpp ../client/registerdialog.h \
@@ -856,23 +896,14 @@ registerdialog.o: ../client/registerdialog.cpp ../client/registerdialog.h \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qdialog.h \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QMessageBox \
 		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qmessagebox.h \
-		ui_registerdialog.h \
-		../client/client.h \
-		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/QObject \
-		../../Qt/6.6.0/macos/lib/QtCore.framework/Headers/qobject.h \
-		../../Qt/6.6.0/macos/lib/QtNetwork.framework/Headers/QUdpSocket \
-		../../Qt/6.6.0/macos/lib/QtNetwork.framework/Headers/qudpsocket.h \
-		../client/mainwindow.h \
-		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QMainWindow \
-		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		../client/chatclient.h \
-		../client/activeuserframe.h \
-		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QFrame \
-		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qframe.h
+		ui_registerdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o registerdialog.o ../client/registerdialog.cpp
 
-moc_activeuserframe.o: moc_activeuserframe.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_activeuserframe.o moc_activeuserframe.cpp
+userframe.o: ../client/userframe.cpp ../client/userframe.h \
+		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/QFrame \
+		../../Qt/6.6.0/macos/lib/QtWidgets.framework/Headers/qframe.h \
+		ui_userframe.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o userframe.o ../client/userframe.cpp
 
 moc_chatclient.o: moc_chatclient.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_chatclient.o moc_chatclient.cpp
@@ -880,11 +911,20 @@ moc_chatclient.o: moc_chatclient.cpp
 moc_client.o: moc_client.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_client.o moc_client.cpp
 
+moc_creategroupdialog.o: moc_creategroupdialog.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_creategroupdialog.o moc_creategroupdialog.cpp
+
+moc_groupchatframe.o: moc_groupchatframe.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_groupchatframe.o moc_groupchatframe.cpp
+
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
 
 moc_registerdialog.o: moc_registerdialog.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_registerdialog.o moc_registerdialog.cpp
+
+moc_userframe.o: moc_userframe.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_userframe.o moc_userframe.cpp
 
 ####### Install
 
