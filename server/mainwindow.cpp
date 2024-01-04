@@ -15,11 +15,9 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::addLog(QString log){
-    QString data = "[" + QTime::currentTime().toString() + "] " + log;
+    QString data = "[" + QDateTime::currentDateTime().toString() + "] " + log;
     qDebug() << data;
     ui->listWidget_log->addItem(data);
-    this->repaint();
-    qApp->processEvents();
 }
 
 

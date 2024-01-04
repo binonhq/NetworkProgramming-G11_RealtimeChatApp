@@ -1,6 +1,6 @@
 QT       += core gui
 QT       += network
-
+QT       += gui widgets
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = QUdpSocket
@@ -36,5 +36,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
+    friend_requests.txt \
+    group_chat.txt \
+    group_members.txt \
+    list_friends.txt \
     private_chat.txt \
     users.txt

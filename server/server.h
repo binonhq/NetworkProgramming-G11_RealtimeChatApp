@@ -17,6 +17,9 @@ public:
     QString loginHandler(QString username, QString password);
     bool signupHandler(QString username, QString password);
     void sendAllCurrentActive();
+    void sendPrivateMessage(QString user1, QString user2);
+    void sendGroupMessage(QString groupName, QVector<CurrentActive> activeMembers);
+    void sendAllUsersData(CurrentActive now);
 
 signals:
     void logReceived(QString log);

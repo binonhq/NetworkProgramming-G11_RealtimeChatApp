@@ -6,7 +6,6 @@ class User
 {
 public:
     User();
-    QString id;
     QString username;
     QString password;
 };
